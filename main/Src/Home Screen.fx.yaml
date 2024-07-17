@@ -1,0 +1,376 @@
+"'Home Screen' As screen":
+    Fill: =RGBA(0, 0, 0, 1)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Header_Container As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semibold
+        Height: =75
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Header1_1 As Header:
+            DisplayMode: =DisplayMode.Edit
+            Height: =75
+            Logo: =download
+            OnSelectLogo: =Navigate('Travel Request Screen',ScreenTransition.Fade);NewForm(ApprovalForm1)
+            Title: ="Travel Management System"
+            UserEmail: =User().Email
+            UserImage: =User().Image
+            UserName: =User().FullName
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+    Gallery_Container As groupContainer.horizontalAutoLayoutContainer:
+        Height: =450
+        LayoutMode: =LayoutMode.Auto
+        Width: =1310
+        X: =27
+        Y: =280
+        ZIndex: =2
+
+        Normal_Container As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Height: =Gallery_Container.Height-Gallery_Container.PaddingTop
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            Width: =1310
+            ZIndex: =1
+
+            Gallery_traveldetails As gallery.galleryVertical:
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Height: =Normal_Container.Height
+                Items: =Filter('Travel Request',Or('Travel Type'.Value=DropdownCanvas1.Selected.Value,DropdownCanvas1.Selected.Value="All"))
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =60
+                Width: =Normal_Container.Width
+                ZIndex: =1
+
+                txt_title As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Title
+                    Width: =125
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                txt_traveltype As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.'Travel Type'.Value
+                    Width: =125
+                    X: =txt_title.X+txt_title.Width+5
+                    Y: =0
+                    ZIndex: =2
+
+                txt_destination As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Destination
+                    Width: =125
+                    X: =txt_traveltype.X+txt_traveltype.Width+5
+                    Y: =0
+                    ZIndex: =3
+
+                txt_travelstartdate As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.'Travel Start Date'
+                    Width: =125
+                    X: =txt_destination.X+txt_destination.Width+5
+                    Y: =0
+                    ZIndex: =4
+
+                txt_travelenddate As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.'Travel End Date'
+                    Width: =125
+                    X: =txt_travelstartdate.X+txt_travelstartdate.Width+5
+                    Y: =0
+                    ZIndex: =5
+
+                txt_airline As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Airline
+                    Width: =125
+                    X: =txt_travelenddate.X+txt_travelenddate.Width+5
+                    Y: =0
+                    ZIndex: =6
+
+                txt_airfare As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        =Text(ThisItem.'Estimate Airfare',"$##,##.00")
+                    Width: =125
+                    X: =txt_airline.X+txt_airline.Width+5
+                    Y: =0
+                    ZIndex: =7
+
+                txt_hotel As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Hotel
+                    Width: =125
+                    X: =txt_airfare.X+txt_airfare.Width+5
+                    Y: =0
+                    ZIndex: =8
+
+                txt_hotelfare As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BorderStyle: =""
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =App.Theme.Colors.Primary
+                    Height: =Gallery_traveldetails.TemplateHeight-10
+                    IconStyle: ='ButtonCanvas.IconStyle'.Outline
+                    OnSelect: =Select(Parent)
+                    Text: |-
+                        =Text(ThisItem.'Estimate Hotel Cost',"$##,##.00")
+                    Width: =125
+                    X: =txt_hotel.X+txt_hotel.Width+5
+                    Y: =0
+                    ZIndex: =9
+
+                "Progress1 As 'Progress Bar'":
+                    BasePaletteColor: =RGBA(8, 222, 8, 1)
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =5
+                    Indeterminate: =true
+                    Thickness: ='Progress.Thickness'.Large
+                    Width: =Gallery_traveldetails.Width
+                    X: =0
+                    Y: =Gallery_traveldetails.TemplateHeight-Self.Height-5
+                    ZIndex: =10
+
+                Icon_view As icon.View:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(139, 154, 159, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =50
+                    Icon: =Icon.View
+                    OnSelect: =Select(Parent);Navigate('Travel Request Screen',ScreenTransition.Fade);ViewForm(ApprovalForm1)
+                    Width: =50
+                    X: =txt_hotelfare.X+txt_hotelfare.Width+10
+                    Y: =Gallery_traveldetails.TemplateHeight/2-Self.Height/2
+                    ZIndex: =11
+
+                Icon_edit As icon.Edit:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(139, 154, 159, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =50
+                    Icon: =Icon.Edit
+                    OnSelect: =Select(Parent);Navigate('Travel Request Screen',ScreenTransition.Fade);EditForm(ApprovalForm1)
+                    Width: =50
+                    X: =Icon_view.X+Icon_view.Width+25
+                    ZIndex: =12
+
+    DropdownCanvas1 As Dropdown.pcfdataset:
+        BorderStyle: =""
+        DefaultSelectedItems: =["All"]
+        DisplayMode: =DisplayMode.Edit
+        Height: =32
+        Items: =["All", "Business", "Interview"]
+        Width: =320
+        X: =27
+        Y: =103
+        ZIndex: =3
+
+    ColumnHeader_Container As groupContainer.manualLayoutContainer:
+        Height: =Gallery_traveldetails.TemplateHeight
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Gallery_Container.Width
+        X: =Gallery_Container.X
+        Y: =Header_Container.Y+Header_Container.Height+140
+        ZIndex: =4
+
+        Lbl_title As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =15
+            Size: =11
+            Text: ="Title 🎶"
+            Width: =txt_title.Width
+            ZIndex: =1
+
+        Lbl_traveltype As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =15
+            Size: =11
+            Text: ="Travel Type ✌"
+            Width: =txt_traveltype.Width
+            X: =txt_traveltype.X
+            ZIndex: =2
+
+        Lbl_Destination As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =13
+            Size: =11
+            Text: ="Destination 🛕"
+            Width: =txt_title.Width
+            X: =txt_destination.X
+            ZIndex: =3
+
+        Lbl_startdate As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =15
+            Size: =11
+            Text: ="Start Date 📅"
+            Width: =txt_title.Width
+            X: =txt_travelstartdate.X
+            ZIndex: =4
+
+        Lbl_Enddate As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =15
+            Size: =11
+            Text: ="End Date 📅"
+            Width: =txt_title.Width
+            X: =txt_travelenddate.X
+            ZIndex: =5
+
+        Lbl_airline As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =13
+            Size: =11
+            Text: ="Airline ✈"
+            Width: =txt_title.Width
+            X: =txt_airline.X
+            ZIndex: =6
+
+        Lbl_airfare As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =13
+            Size: =11
+            Text: ="Air Fare 🤑"
+            Width: =txt_title.Width
+            X: =txt_airfare.X
+            ZIndex: =7
+
+        Lbl_hotel As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =13
+            Size: =11
+            Text: ="Hotel 🏩"
+            Width: =txt_title.Width
+            X: =txt_hotel.X
+            ZIndex: =8
+
+        Lbl_Destination_1 As label:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(152, 208, 70, 1)
+            Font: =App.Theme.Font
+            FontWeight: =FontWeight.Bold
+            Height: =ColumnHeader_Container.Height
+            PaddingLeft: =13
+            Size: =11
+            Text: ="Hotel Fare 🤑"
+            Width: =txt_title.Width
+            X: =txt_hotelfare.X
+            ZIndex: =9
+
